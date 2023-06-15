@@ -1,6 +1,11 @@
 package ec.edu.insteclrg.dto;
 
+import lombok.Data;
+
+@Data
 public class ServicioDTO {
-	// TODO
-		// Completar
+
+	private Long id;
+
+	private String name;
 }

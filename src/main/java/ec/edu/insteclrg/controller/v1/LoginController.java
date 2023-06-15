@@ -27,7 +27,7 @@ public class LoginController {
 		if (user != null && user.getContraseña().equals(loginDTO.getContraseña())) {
 			return new ResponseEntity<>(new ApiResponseDTO<>(true, "Inicio de sesión exitoso"), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(new ApiResponseDTO<>(false, "Credenciales inválidas"), HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(new ApiResponseDTO<>(false, "Contraseña o usuario Incorectos"), HttpStatus.UNAUTHORIZED);
 		}
 	}
 }

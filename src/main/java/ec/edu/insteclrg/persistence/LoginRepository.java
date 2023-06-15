@@ -7,5 +7,6 @@ import ec.edu.insteclrg.domain.Login;
 
 @Repository
 public interface LoginRepository extends JpaRepository<Login, Long>{
+	
 	 Login findByNombreusuario(String nombreUsuario);
 }
