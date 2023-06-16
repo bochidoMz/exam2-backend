@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ec.edu.insteclrg.domain.Category;
 import ec.edu.insteclrg.domain.Product;
 import ec.edu.insteclrg.dto.ApiResponseDTO;
+import ec.edu.insteclrg.dto.CategoriaDTO;
 import ec.edu.insteclrg.dto.ProductoDTO;
+import ec.edu.insteclrg.persistence.CategoryRepository;
 import ec.edu.insteclrg.service.crud.ProductService;
 
 @RestController
@@ -75,13 +78,16 @@ public class ProductController {
 
 	@DeleteMapping(path = "{id}")
 	public ResponseEntity<Object> eliminar(@PathVariable Long id) {
-		Optional<Product> domain = service.find(null);
-		if (domain.isPresent()) {
-			service.delete(null);
+		ProductoDTO dto = new ProductoDTO();
+		dto.setId(id);
+		Optional<Product > productOptional = service.find(dto);
+	
+		if(productOptional.isPresent()) {
+			service.delete(dto);
 			return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
 		}
-	}
 	
+ }
 }
