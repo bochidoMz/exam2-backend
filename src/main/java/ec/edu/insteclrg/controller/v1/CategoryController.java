@@ -20,6 +20,8 @@ import ec.edu.insteclrg.dto.ApiResponseDTO;
 import ec.edu.insteclrg.dto.CategoriaDTO;
 import ec.edu.insteclrg.service.crud.CategoryService;
 
+
+
 @RestController
 @RequestMapping("/api/v1.0/categoria")
 public class CategoryController {
@@ -76,13 +78,13 @@ public class CategoryController {
 
 	@DeleteMapping(path = "{id}")
 	public ResponseEntity<Object> eliminar(@PathVariable Long id) {
-		Optional<Category> domain = service.find(null);
-		if (domain.isPresent()) {
-			service.delete(null);;
-			return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
-		}
+	    Optional<Category> domain = service.find(null);
+	    if (domain.isPresent()) {
+	        service.delete(id);
+	        return new ResponseEntity<>(new ApiResponseDTO<>(true, null), HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>(new ApiResponseDTO<>(false, null), HttpStatus.NOT_FOUND);
+	    }
 	}
 
 }

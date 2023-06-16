@@ -11,7 +11,7 @@ import ec.edu.insteclrg.dto.CategoriaDTO;
 import ec.edu.insteclrg.persistence.CategoryRepository;
 import ec.edu.insteclrg.service.GenericCrudServiceImpl;
 
-@Service
+@Service 
 public class CategoryService extends GenericCrudServiceImpl<Category, CategoriaDTO> {
 
 	@Autowired
@@ -33,5 +33,9 @@ public class CategoryService extends GenericCrudServiceImpl<Category, CategoriaD
 	public Category mapToDomain(CategoriaDTO dto) {
 		return modelMapper.map(dto, Category.class);
 	}
+	
+	 public void delete(Long id) {
+	        repository.deleteById(id);
+	    }
 
 }
